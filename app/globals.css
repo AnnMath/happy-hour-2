@@ -3,19 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /*** COLORS ***/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  /* Deep blue */
+  --color-deep-blue: 25.59% 0.1077 286.21;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Wattle */
+  --color-wattle-50: oklch(0.986 0.031 120.757);
+  --color-wattle-100: oklch(0.967 0.067 106.62);
+  --color-wattle-200: oklch(0.938 0.127 106.62);
+  --color-wattle-300: oklch(0.897 0.196 106.62);
+  --color-wattle-400: oklch(0.813 0.158 106.62);
+  --color-wattle-500: oklch(0.768 0.233 106.62);
+  --color-wattle-600: oklch(0.648 0.2 106.62);
+  --color-wattle-700: oklch(0.532 0.157 106.62);
+  --color-wattle-800: oklch(0.453 0.124 106.62);
+  --color-wattle-900: oklch(0.405 0.101 106.62);
+  --color-wattle-950: oklch(0.274 0.072 106.62);
+
+  /* Persian pink */
+  --color-persian-pink-50: oklch(0.971 0.014 350.4);
+  --color-persian-pink-100: oklch(0.948 0.028 350.4);
+  --color-persian-pink-200: oklch(0.899 0.061 350.4);
+  --color-persian-pink-300: oklch(0.823 0.12 350.4);
+  --color-persian-pink-400: oklch(0.712 0.1712 350.4);
+  --color-persian-pink-500: oklch(0.656 0.241 350.4);
+  --color-persian-pink-600: oklch(0.592 0.249 350.4);
+  --color-persian-pink-700: oklch(0.525 0.223 350.4);
+  --color-persian-pink-800: oklch(0.459 0.187 350.4);
+  --color-persian-pink-900: oklch(0.408 0.153 350.4);
+  --color-persian-pink-950: oklch(0.284 0.109 350.4);
+
+  /* Slate blue */
+  --color-slate-blue: 47.95% 0.0658 281.45;
+
+  /*** SHADOWS ***/
+  --shadow-solid: 6px 6px 0px 0px oklch(25.59% 0.1077 286.21);
+  --shadow-solid-big: 10px 10px 0px 0px oklch(25.59% 0.1077 286.21);
 }
