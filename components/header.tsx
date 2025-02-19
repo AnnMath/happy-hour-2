@@ -6,16 +6,15 @@ const Header = () => {
     <header>
       <nav className="bg-slate-blue flex w-full flex-col items-center py-4">
         <Link href="/">
-          <div className="my-4 w-64">
-            <Image
-              src="/happy-hour-logo.svg"
-              alt="Happy hour logo"
-              width={256}
-              height={100}
-            />
-          </div>
+          <Image
+            src="/happy-hour-logo.svg"
+            alt="Happy hour logo"
+            width={0}
+            height={0}
+            className="my-4 w-64 h-auto"
+          />
         </Link>
-        <ul className="menu flex justify-around text-slate-200 sm:w-96">
+        <ul className="menu flex justify-around text-slate-200 sm:w-md">
           <li className="menu-item font-roboto-mono bg-deep-blue/30 hover:bg-deep-blue/20 rounded-md p-1 sm:p-2">
             <Link href="/" aria-label="home">
               🏠 Home

@@ -1,12 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --font-*: initial;
+  --font-roboto-mono: var(--font-roboto-mono);
+  --font-montserrat: var(--montserrat);
+  --font-cabin: var(--font-cabin);
+
+  --color-deep-blue: oklch(var(--color-deep-blue));
+  --color-slate-blue: oklch(var(--color-slate-blue));
+
+  --color-wattle-50: var(--color-wattle-50);
+  --color-wattle-100: var(--color-wattle-100);
+  --color-wattle-200: var(--color-wattle-200);
+  --color-wattle-300: var(--color-wattle-300);
+  --color-wattle-400: var(--color-wattle-400);
+  --color-wattle-500: var(--color-wattle-500);
+  --color-wattle-600: var(--color-wattle-600);
+  --color-wattle-700: var(--color-wattle-700);
+  --color-wattle-800: var(--color-wattle-800);
+  --color-wattle-900: var(--color-wattle-900);
+  --color-wattle-950: var(--color-wattle-950);
+
+  --color-persian-pink-50: var(--color-persian-pink-50);
+  --color-persian-pink-100: var(--color-persian-pink-100);
+  --color-persian-pink-200: var(--color-persian-pink-200);
+  --color-persian-pink-300: var(--color-persian-pink-300);
+  --color-persian-pink-400: var(--color-persian-pink-400);
+  --color-persian-pink-500: var(--color-persian-pink-500);
+  --color-persian-pink-600: var(--color-persian-pink-600);
+  --color-persian-pink-700: var(--color-persian-pink-700);
+  --color-persian-pink-800: var(--color-persian-pink-800);
+  --color-persian-pink-900: var(--color-persian-pink-900);
+  --color-persian-pink-950: var(--color-persian-pink-950);
+
+  --shadow-solid: var(--shadow-solid);
+  --shadow-solid-big: var(--shadow-solid-big);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 :root {
   /*** COLORS ***/
 
   /* Deep blue */
-  --color-deep-blue: 25.59% 0.1077 286.21;
+  --color-deep-blue: oklch(25.59% 0.1077 286.21);
 
   /* Wattle */
   --color-wattle-50: oklch(0.986 0.031 120.757);
@@ -35,9 +88,9 @@
   --color-persian-pink-950: oklch(0.284 0.109 350.4);
 
   /* Slate blue */
-  --color-slate-blue: 47.95% 0.0658 281.45;
+  --color-slate-blue: oklch(47.95% 0.0658 281.45);
 
   /*** SHADOWS ***/
-  --shadow-solid: 6px 6px 0px 0px oklch(25.59% 0.1077 286.21);
-  --shadow-solid-big: 10px 10px 0px 0px oklch(25.59% 0.1077 286.21);
+  --shadow-solid: 6px 6px 0px 0px var(--color-deep-blue);
+  --shadow-solid-big: 10px 10px 0px 0px var(--color-deep-blue);
 }
