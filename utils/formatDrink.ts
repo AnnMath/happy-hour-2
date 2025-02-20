@@ -1,7 +1,10 @@
 import { Drink, RawDrink } from "@/interfaces";
+import { getFavourites } from "./handleMyDrinks";
 
-const formatDrink = (drink: RawDrink): Drink => ({
-  id: drink.idDrink,
+const formatDrink = (drink: RawDrink): Drink => {
+
+  return {
+     id: drink.idDrink,
   name: drink.strDrink,
   ingredients: Array.from({ length: 15 }, (_, i) => {
     const ingredientKey = `strIngredient${i + 1}` as keyof RawDrink;
@@ -13,9 +16,11 @@ const formatDrink = (drink: RawDrink): Drink => ({
   }).filter((item) => item) as string[],  // Filter nulls and assert as string[]
   instructions: drink.strInstructions,
   isAlcoholic: drink.strAlcoholic,
-  isFavourited: false, // Default value
+  isFavourited: false,
   rating: 0, // Default value
   thumbnail: drink.strDrinkThumb,
-});
+  }
+ 
+}
 
 export default formatDrink;

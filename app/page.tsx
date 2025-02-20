@@ -1,10 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { fetchRandom } from '@/api'
 import { Drink } from '@/interfaces'
 import DrinkCard from '@/components/drink-card'
+import {
+  drinksWithFavourites,
+  getFavourites,
+  toggleFavourite,
+} from '@/utils/handleMyDrinks'
 
 const Home = () => {
   const [drinks, setDrinks] = useState<Drink[]>([])
@@ -12,13 +17,19 @@ const Home = () => {
 
   const getDrinks = async () => {
     const newDrinks = await fetchRandom()
-    console.log(newDrinks)
-    setDrinks(newDrinks)
+    setDrinks(drinksWithFavourites(newDrinks))
 
-    randomDrinksRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
+    setTimeout(() => {
+      randomDrinksRef.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }, 100)
+  }
+
+  const handleToggleFavourite = (drink: Drink) => {
+    toggleFavourite(drink)
+    setDrinks((prevDrinks) => drinksWithFavourites(prevDrinks))
   }
   return (
     <>
@@ -52,7 +63,13 @@ const Home = () => {
         ref={randomDrinksRef}
       >
         {drinks.length > 0 &&
-          drinks.map((drink) => <DrinkCard key={drink.id} drink={drink} />)}
+          drinks.map((drink) => (
+            <DrinkCard
+              key={drink.id}
+              drink={drink}
+              onToggleFavourite={handleToggleFavourite}
+            />
+          ))}
       </article>
     </>
   )

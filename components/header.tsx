@@ -21,7 +21,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="menu-item font-roboto-mono bg-deep-blue/10 hover:bg-deep-blue/20 rounded-md p-1 sm:p-2">
-            <Link href="/" aria-label="favourites">
+            <Link href="/my-drinks" aria-label="favourites">
               ⭐️ My drinks
             </Link>
           </li>
