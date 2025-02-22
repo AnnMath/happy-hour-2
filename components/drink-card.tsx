@@ -1,11 +1,17 @@
 import Image from 'next/image'
 import { Drink } from '@/interfaces'
+import { Star } from 'lucide-react'
 
 interface DrinkCardProps {
   drink: Drink
   onToggleFavourite: (drink: Drink) => void
+  onStarClick: (drink: Drink, star: number) => void
 }
-const DrinkCard = ({ drink, onToggleFavourite }: DrinkCardProps) => {
+const DrinkCard = ({
+  drink,
+  onToggleFavourite,
+  onStarClick,
+}: DrinkCardProps) => {
   const {
     id,
     name,
@@ -14,6 +20,7 @@ const DrinkCard = ({ drink, onToggleFavourite }: DrinkCardProps) => {
     ingredients,
     isAlcoholic,
     isFavourited,
+    rating,
   } = drink
 
   return (
@@ -29,11 +36,12 @@ const DrinkCard = ({ drink, onToggleFavourite }: DrinkCardProps) => {
         onClick={() => onToggleFavourite(drink)}
         className="absolute top-10 right-12 h-8 w-8 rounded-sm bg-slate-900/50 p-1 transition ease-in-out hover:scale-110 hover:cursor-pointer"
       >
-        <Image
-          src={isFavourited ? '/star-fill.svg' : '/star-gray.svg'}
-          alt=""
-          width={100}
-          height={100}
+        <Star
+          strokeWidth={0}
+          size={24}
+          fill={
+            isFavourited ? 'oklch(62.06% 0.2713 350.51)' : 'oklch(81.37% 0 87)'
+          }
         />
       </button>
       {isAlcoholic !== 'Alcoholic' && (
@@ -46,11 +54,18 @@ const DrinkCard = ({ drink, onToggleFavourite }: DrinkCardProps) => {
         </div>
       )}
 
-      {/* if isAlcoholic => badge etc */}
-
-      {/* <div className="absolute top-73 left-12 flex items-center justify-center gap-1 rounded-sm bg-slate-900/50 p-2 text-slate-200">
-        star rating
-      </div> */}
+      <div className="absolute top-73 left-12 flex items-center justify-center gap-1 rounded-sm bg-slate-900/50 p-2 text-slate-200">
+        {[1, 2, 3, 4, 5].map((star, index) => (
+          <Star
+            key={index}
+            strokeWidth={0}
+            fill={
+              star <= rating ? 'oklch(85.86% 0.1789 87)' : 'oklch(81.37% 0 87)'
+            }
+            onClick={() => onStarClick(drink, star)}
+          />
+        ))}
+      </div>
       <h2 className="cocktail-name font-cabin mt-4 text-2xl dark:text-slate-200">
         {name}
       </h2>

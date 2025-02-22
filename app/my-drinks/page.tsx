@@ -22,6 +22,10 @@ const MyDrinks = () => {
     toggleFavourite(drink)
     setDrinks(getFavourites())
   }
+
+  const handleStarClick = () => {
+    console.log('some placeholder shit')
+  }
   return (
     <>
       <article className="hero relative h-screen w-full">
@@ -75,6 +79,7 @@ const MyDrinks = () => {
               key={drink.id}
               drink={drink}
               onToggleFavourite={handleToggleFavourite}
+              onStarClick={handleStarClick}
             />
           ))}
       </article>

@@ -10,6 +10,7 @@ import {
   getFavourites,
   toggleFavourite,
 } from '@/utils/handleMyDrinks'
+import handleRating from '@/utils/handleRating'
 
 const Home = () => {
   const [drinks, setDrinks] = useState<Drink[]>([])
@@ -31,6 +32,21 @@ const Home = () => {
     toggleFavourite(drink)
     setDrinks((prevDrinks) => drinksWithFavourites(prevDrinks))
   }
+
+  const handleStarClick = (drink: Drink, star: number) => {
+    handleRating(drink, star)
+    setDrinks((prevDrinks) => {
+      const updatedFavourites = getFavourites()
+
+      return prevDrinks.map((d) => {
+        const isFavourited = updatedFavourites.some((fav) => fav.id === d.id)
+        return d.id === drink.id
+          ? { ...d, rating: star, isFavourited }
+          : { ...d, isFavourited }
+      })
+    })
+  }
+
   return (
     <>
       <article className="hero relative h-screen w-full">
@@ -68,6 +84,7 @@ const Home = () => {
               key={drink.id}
               drink={drink}
               onToggleFavourite={handleToggleFavourite}
+              onStarClick={handleStarClick}
             />
           ))}
       </article>

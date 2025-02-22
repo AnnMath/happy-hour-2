@@ -19,7 +19,7 @@ const formatDrink = (drink: RawDrink): Drink => {
     instructions: drink.strInstructions,
     isAlcoholic: drink.strAlcoholic,
     isFavourited: false,
-    rating: 0, // Default value
+    rating: 0,
     thumbnail: drink.strDrinkThumb,
   }
 }
