@@ -57,11 +57,11 @@ const DrinkCard = ({
       <div className="absolute top-73 left-12 flex items-center justify-center gap-1 rounded-sm bg-slate-900/50 p-2 text-slate-200">
         {[1, 2, 3, 4, 5].map((star, index) => (
           <Star
+            color="oklch(85.86% 0.1789 87)"
+            size={20}
             key={index}
-            strokeWidth={0}
-            fill={
-              star <= rating ? 'oklch(85.86% 0.1789 87)' : 'oklch(81.37% 0 87)'
-            }
+            strokeWidth={1}
+            fill={star <= rating ? 'oklch(85.86% 0.1789 87)' : 'none'}
             onClick={() => onStarClick(drink, star)}
           />
         ))}

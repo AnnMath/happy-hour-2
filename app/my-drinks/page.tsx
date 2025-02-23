@@ -1,14 +1,11 @@
 'use client'
 import Image from 'next/image'
 import { ArrowDown } from 'lucide-react'
-import {
-  drinksWithFavourites,
-  getFavourites,
-  toggleFavourite,
-} from '@/utils/handleMyDrinks'
+import { getFavourites, toggleFavourite } from '@/utils/handleMyDrinks'
 import { useEffect, useRef, useState } from 'react'
 import { Drink } from '@/interfaces'
 import DrinkCard from '@/components/drink-card'
+import handleStarClick from '@/utils/handleStarClick'
 
 const MyDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([])
@@ -23,9 +20,6 @@ const MyDrinks = () => {
     setDrinks(getFavourites())
   }
 
-  const handleStarClick = () => {
-    console.log('some placeholder shit')
-  }
   return (
     <>
       <article className="hero relative h-screen w-full">
@@ -79,7 +73,9 @@ const MyDrinks = () => {
               key={drink.id}
               drink={drink}
               onToggleFavourite={handleToggleFavourite}
-              onStarClick={handleStarClick}
+              onStarClick={(drink, star) =>
+                handleStarClick(drink, star, setDrinks)
+              }
             />
           ))}
       </article>

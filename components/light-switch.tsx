@@ -3,7 +3,6 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
 const LightSwitch = () => {
-  const [checkedTheme, setCheckedTheme] = useState<string>('light')
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -16,12 +15,11 @@ const LightSwitch = () => {
   }
 
   const lightSwitches = [
-    { id: 'light', icon: <Sun size={16} strokeWidth={1.5} /> },
-    { id: 'dark', icon: <Moon size={16} strokeWidth={1.5} /> },
-    { id: 'system', icon: <Monitor size={16} strokeWidth={1.5} /> },
+    { id: 'light', icon: <Sun size={17} strokeWidth={1.5} /> },
+    { id: 'dark', icon: <Moon size={17} strokeWidth={1.5} /> },
+    { id: 'system', icon: <Monitor size={17} strokeWidth={1.5} /> },
   ]
   const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCheckedTheme(e.target.id)
     setTheme(e.target.id)
   }
   return (
@@ -34,7 +32,7 @@ const LightSwitch = () => {
             name="theme-select"
             className="peer hidden"
             onChange={handleThemeChange}
-            checked={checkedTheme === id}
+            checked={theme === id}
           />
           <label
             htmlFor={id}

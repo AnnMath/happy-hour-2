@@ -13,12 +13,20 @@ export const toggleFavourite = (drink: Drink): Drink[] => {
   const favourites = getFavourites()
   const isAlreadyFavourited = favourites.some((fav) => fav.id === drink.id)
 
-  const updatedFavourites = isAlreadyFavourited
-    ? favourites.filter((fav) => fav.id !== drink.id)
-    : [...favourites, { ...drink, isFavourited: true }]
+  if (isAlreadyFavourited) {
+    // Remove from favourites
+    const updatedFaves = favourites.filter((fav) => fav.id !== drink.id)
+    drink.isFavourited = false
+    drink.rating = 0
+    saveFavourites(updatedFaves)
+  } else {
+    // Add to favourites
+    drink.isFavourited = true
+    favourites.push(drink)
+    saveFavourites(favourites)
+  }
 
-  saveFavourites(updatedFavourites)
-  return updatedFavourites
+  return favourites
 }
 
 export const drinksWithFavourites = (drinks: Drink[]): Drink[] => {
