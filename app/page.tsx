@@ -1,16 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { fetchRandom } from '@/api'
 import { Drink } from '@/interfaces'
 import DrinkCard from '@/components/drink-card'
-import {
-  drinksWithFavourites,
-  getFavourites,
-  toggleFavourite,
-} from '@/utils/handleMyDrinks'
+import { drinksWithFavourites, toggleFavourite } from '@/utils/handleMyDrinks'
 import handleStarClick from '@/utils/handleStarClick'
+import BackgroundImage from '@/components/background-image'
 
 const Home = () => {
   const [drinks, setDrinks] = useState<Drink[]>([])
@@ -36,13 +32,7 @@ const Home = () => {
   return (
     <>
       <article className="hero relative h-screen w-full">
-        <Image
-          src="/background-img.jpg"
-          alt=""
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+        <BackgroundImage />
         <div className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-start bg-slate-900/50 p-10">
           <h1 className="font-cabin text-wattle-400 text-center text-3xl font-bold md:text-9xl">
             Welcome to Happy Hour!
@@ -59,7 +49,6 @@ const Home = () => {
           </button>
         </div>
       </article>
-      {/* This should be its own component, I guess */}
       <article
         className="random-drinks-container bg-slate-blue flex w-full flex-wrap justify-around md:px-8"
         ref={randomDrinksRef}

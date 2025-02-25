@@ -1,14 +1,15 @@
 'use client'
-import Image from 'next/image'
 import { ArrowDown } from 'lucide-react'
 import { getFavourites, toggleFavourite } from '@/utils/handleMyDrinks'
 import { useEffect, useRef, useState } from 'react'
 import { Drink } from '@/interfaces'
 import DrinkCard from '@/components/drink-card'
 import handleStarClick from '@/utils/handleStarClick'
+import BackgroundImage from '@/components/background-image'
 
 const MyDrinks = () => {
   const [drinks, setDrinks] = useState<Drink[]>([])
+  const [clicked, setClicked] = useState<boolean>(false)
   const ref = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -23,13 +24,7 @@ const MyDrinks = () => {
   return (
     <>
       <article className="hero relative h-screen w-full">
-        <Image
-          src="/background-img.jpg"
-          alt=""
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+        <BackgroundImage />
         <div className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-start bg-slate-900/50 p-10">
           <h1 className="font-cabin text-wattle-400 text-center text-3xl font-bold md:text-9xl">
             What's your poison?
@@ -54,9 +49,12 @@ const MyDrinks = () => {
             <button
               onClick={() => {
                 ref.current?.scrollIntoView({ behavior: 'smooth' })
+                setClicked(true)
               }}
               aria-label="Scroll to favourites"
-              className="scroll-button font-roboto-mono bg-persian-pink-700 hover:bg-persian-pink-800 shadow-solid active:bg-slate-blue mt-20 h-12 w-12 rounded-4xl p-3 text-slate-200 cursor-pointer"
+              className={`scroll-button font-roboto-mono bg-persian-pink-700 hover:bg-persian-pink-800 shadow-solid active:bg-slate-blue mt-20 h-12 w-12 rounded-4xl p-3 text-slate-200 cursor-pointer ${
+                clicked ? 'animate-none' : 'animate-bounce'
+              }`}
             >
               <ArrowDown />
             </button>

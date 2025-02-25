@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import LightSwitch from './light-switch'
 
 const Footer = () => {
@@ -8,10 +9,12 @@ const Footer = () => {
     <footer className="footer bg-wattle-500 dark:bg-wattle-900 flex w-full flex-col justify-between p-16 sm:flex-row">
       <section className="about mb-4 flex flex-col sm:mb-0">
         <Link href="/">
-          <img
+          <Image
             src="/happy-hour-logo-slate.svg"
             alt="Happy hour logo"
             className="w-60"
+            height={0}
+            width={0}
           />
         </Link>
         <p className="font-cabin my-4 text-xl dark:text-slate-200">
